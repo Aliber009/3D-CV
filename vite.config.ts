@@ -19,5 +19,5 @@ export default defineConfig({
         ]
     })
 ],
-  base: '/3D-CV/'
+  
 });
