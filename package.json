@@ -1,0 +1,78 @@
+{
+  "name": "3d-portfolio",
+  "version": "1.1.4",
+  "private": true,
+  "author": {
+    "name": "ali beroro",
+    "email": "aliberoro.pro@gmail.com",
+    "url": "https://github.com/aliber009"
+  },
+  "description": "Ali's Portfolio",
+  "keywords": [
+    "reactjs",
+    "react",
+    "porfolio-app",
+    "three-js",
+    "modern-ui/ux",
+    "js",
+    "javascript",
+    "html",
+    "css",
+    "tailwindcss"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanidhyy/3d-portfolio.git"
+  },
+  "homepage": "https://github.com/sanidhyy/3d-portfolio#readme",
+  "bugs": {
+    "url": "https://github.com/sanidhyy/3d-portfolio/issues",
+    "email": "sanidhya.verma12345@gmail.com"
+  },
+  "funding": [
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/sanidhy"
+    },
+    {
+      "type": "Buy me a coffee",
+      "url": "https://www.buymeacoffee.com/sanidhy"
+    }
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.3.3",
+    "@react-three/fiber": "^8.16.8",
+    "@react-three/drei": "^9.107.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.2.10",
+    "maath": "^0.10.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.1",
+    "react-tilt": "^1.0.2",
+    "react-vertical-timeline-component": "^3.6.0",
+    "sonner": "^1.5.0",
+    "tailwind-merge": "^2.3.0",
+    "three": "^0.165.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-vertical-timeline-component": "^3.3.6",
+    "@types/tailwindcss": "^3.1.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.4.5",
+    "vite": "^5.3.1"
+  }
+}
