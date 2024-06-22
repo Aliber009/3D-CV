@@ -21,11 +21,7 @@
     "tailwindcss"
   ],
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Aliber009/3D-CV.git"
-  },
-  "homepage": "https://Aliber009.github.io/",
+  "homepage": "https://aliber009.github.io/3D-CV",
   "type": "module",
   "scripts": {
     "dev": "vite",
