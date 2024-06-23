@@ -7,7 +7,6 @@ import CanvasLoader from "../loader";
 // Earth
 const Earth = () => {
   // import earth scene
-  const earth = useGLTF("./planet/scene.gltf");
   const {nodes} : any = useGLTF("./rocket.glb");
   return (
     //<primitive object={earth.scene} scale={1.8} position-y={0} position-x={2} rotation-y={2} />
@@ -28,6 +27,7 @@ const EarthCanvas = () => {
       frameloop="demand"
       gl={{ preserveDrawingBuffer: true }}
       camera={{ fov: 45, near: 0.1, far: 200, position: [-4, 3, 6] }}
+      style={{ pointerEvents: "none" }}
     >
        <fog attach="fog" args={['#272730', 16, 30]} />
         <ambientLight intensity={2} />

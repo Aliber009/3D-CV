@@ -1,9 +1,7 @@
 import {
   Decal,
   Float,
-  OrbitControls,
   Preload,
-  useGLTF,
   useTexture,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
@@ -19,7 +17,6 @@ type BallProps = {
 const Ball = ({ imgUrl }: BallProps) => {
   // use texture from drei
   const [decal] = useTexture([imgUrl]);
-  const cube = useGLTF("./cube/scene.gltf");
   
   return (
     <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
@@ -28,7 +25,7 @@ const Ball = ({ imgUrl }: BallProps) => {
       <directionalLight position={[0, 0, 0.05]} />
       {/* Mesh */}
       <mesh castShadow receiveShadow scale={2.75}>
-      <meshBasicMaterial transparent opacity={0} />
+        <meshBasicMaterial transparent opacity={0} />
         <icosahedronGeometry args={[1, 3]} />
         <Decal
           position={[0, 0, 1]}
@@ -47,10 +44,13 @@ type BallCanvasProps = {
 // Ball Canvas
 const BallCanvas = ({ icon }: BallCanvasProps) => {
   return (
-    <Canvas frameloop="demand" gl={{ preserveDrawingBuffer: true }}>
+    <Canvas
+      frameloop="always"
+      gl={{ preserveDrawingBuffer: true }}
+      style={{ pointerEvents: "none" }}
+    >
       {/* Show canvas loader on fallback */}
       <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls enableZoom={false} />
         <Ball imgUrl={icon} />
       </Suspense>
 
