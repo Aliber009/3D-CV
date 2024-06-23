@@ -52,6 +52,7 @@ const StarsCanvas = () => {
         {/* Show stars if not fallback */}
         <Suspense fallback={null}>
           <Stars />
+          
         </Suspense>
 
         {/* preload all */}

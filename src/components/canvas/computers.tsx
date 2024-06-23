@@ -11,7 +11,7 @@ type ComputersProps = {
 // Computers
 const Computers = ({ isMobile }: ComputersProps) => {
   // Import scene
-  const computer = useGLTF("./desk_ali/desk.gltf");
+  const computer = useGLTF("./desk-opt.glb");
 
   return (
     // Mesh

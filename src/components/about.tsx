@@ -15,12 +15,7 @@ type ServiceCardProps = {
 // Service Card
 const ServiceCard = ({ index, title, icon }: ServiceCardProps) => {
   return (
-    <Tilt
-      options={{
-        max: 20,
-        scale: 1.05,
-        speed: 400,
-      }}
+    <div
       className="xs:w-[250px] w-full"
     >
       <motion.div
@@ -34,7 +29,7 @@ const ServiceCard = ({ index, title, icon }: ServiceCardProps) => {
           </h3>
         </div>
       </motion.div>
-    </Tilt>
+    </div>
   );
 };
 
