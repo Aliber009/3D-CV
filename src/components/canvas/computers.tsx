@@ -1,6 +1,6 @@
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, useState, useMemo } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import CanvasLoader from "../loader";
 
@@ -11,25 +11,26 @@ type ComputersProps = {
 // Computers
 const Computers = ({ isMobile }: ComputersProps) => {
   // Import scene
-  const { scene } = useGLTF("./desk_ali/desk.gltf");
+  const computer = useGLTF("./desk_ali/desk.gltf");
 
   return (
+    // Mesh
     <mesh>
       {/* Light */}
-      <hemisphereLight intensity={0.3} groundColor="black" />
-      <pointLight intensity={10} />
+      <hemisphereLight intensity={isMobile ? 0.2 : 0.3} groundColor="black" />
+      <pointLight intensity={isMobile ? 8 : 12} />
       <spotLight
-        position={[-10, 20, 10]}
-        angle={0.15}
+        position={[-20, 50, 10]}
+        angle={0.12}
         penumbra={1}
-        intensity={1}
+        intensity={isMobile ? 0.8 : 1}
         castShadow
-        shadow-mapSize={512}
+        shadow-mapSize={isMobile ? 512 : 1024}
       />
       <primitive
-        object={scene}
-        scale={isMobile ? 1.6 : 2.0}
-        position={isMobile ? [-0.3, -5, 0.3] : [-0.3, -5.25, 0.3]}
+        object={computer.scene}
+        scale={isMobile ? 1.5 : 2.2}
+        position={isMobile ? [-0.3, -4.5, 0.3] : [-0.3, -5.25, 0.3]}
         rotation={[0, 1.3, 0]}
       />
     </mesh>
@@ -38,7 +39,7 @@ const Computers = ({ isMobile }: ComputersProps) => {
 
 // Computer Canvas
 const ComputersCanvas = () => {
-  // State to check mobile
+  // state to check mobile
   const [isMobile, setIsMobile] = useState(false);
 
   // Check if device is Mobile
@@ -47,9 +48,9 @@ const ComputersCanvas = () => {
 
     setIsMobile(mediaQuery.matches);
 
-    // Handle screen size change
+    // handle screen size change
     const handleMediaQueryChange = (event: MediaQueryListEvent) => {
-      setIsMobile(event.matches);
+      setIsMobile(event?.matches);
     };
 
     mediaQuery.addEventListener("change", handleMediaQueryChange);
@@ -59,23 +60,15 @@ const ComputersCanvas = () => {
     };
   }, []);
 
-  // Optimize camera and lights settings
-  const cameraProps = useMemo(
-    () => ({
-      position: [20, 3, 5],
-      fov: isMobile ? 35 : 25,
-    }),
-    [isMobile]
-  );
-
-  //const shadowMapSize = useMemo(() => (isMobile ? 512 : 1024), [isMobile]);
-
   return (
     <Canvas
       frameloop="demand"
       shadows
-      camera={cameraProps}
+      camera={{ position: isMobile ? [15, 3, 5] : [20, 3, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true, alpha: true }}
+      style={{
+        touchAction:"pan-y !important"
+      }}
     >
       {/* Canvas Loader show on fallback */}
       <Suspense fallback={<CanvasLoader />}>

@@ -24,7 +24,7 @@
   "homepage": "https://aliber009.github.io/3D-CV",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
     "check-types": "tsc --noEmit",

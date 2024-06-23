@@ -3,7 +3,6 @@
 
 import { About } from "./about";
 import {
-  BallCanvas,
   ComputersCanvas,
   EarthCanvas,
   StarsCanvas,
@@ -18,7 +17,6 @@ import { Works } from "./works";
 
 export {
   About,
-  BallCanvas,
   ComputersCanvas,
   Contact,
   EarthCanvas,
