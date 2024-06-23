@@ -1,6 +1,6 @@
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState, useMemo } from "react";
 
 import CanvasLoader from "../loader";
 
@@ -11,25 +11,24 @@ type ComputersProps = {
 // Computers
 const Computers = ({ isMobile }: ComputersProps) => {
   // Import scene
-  const computer = useGLTF("./desk_ali/desk.gltf");
+  const { scene } = useGLTF("./desk_ali/desk.gltf");
 
   return (
-    // Mesh
     <mesh>
       {/* Light */}
-      <hemisphereLight intensity={0.30} groundColor="black" />
-      <pointLight intensity={12} />
+      <hemisphereLight intensity={0.3} groundColor="black" />
+      <pointLight intensity={10} />
       <spotLight
-        position={[-20, 50, 10]}
-        angle={0.12}
+        position={[-10, 20, 10]}
+        angle={0.15}
         penumbra={1}
         intensity={1}
         castShadow
-        shadow-mapSize={1024}
+        shadow-mapSize={512}
       />
       <primitive
-        object={computer.scene}
-        scale={isMobile ? 1.9 : 2.2}
+        object={scene}
+        scale={isMobile ? 1.6 : 2.0}
         position={isMobile ? [-0.3, -5, 0.3] : [-0.3, -5.25, 0.3]}
         rotation={[0, 1.3, 0]}
       />
@@ -39,7 +38,7 @@ const Computers = ({ isMobile }: ComputersProps) => {
 
 // Computer Canvas
 const ComputersCanvas = () => {
-  // state to check mobile
+  // State to check mobile
   const [isMobile, setIsMobile] = useState(false);
 
   // Check if device is Mobile
@@ -48,9 +47,9 @@ const ComputersCanvas = () => {
 
     setIsMobile(mediaQuery.matches);
 
-    // handle screen size change
+    // Handle screen size change
     const handleMediaQueryChange = (event: MediaQueryListEvent) => {
-      setIsMobile(event?.matches);
+      setIsMobile(event.matches);
     };
 
     mediaQuery.addEventListener("change", handleMediaQueryChange);
@@ -60,11 +59,22 @@ const ComputersCanvas = () => {
     };
   }, []);
 
+  // Optimize camera and lights settings
+  const cameraProps = useMemo(
+    () => ({
+      position: [20, 3, 5],
+      fov: isMobile ? 35 : 25,
+    }),
+    [isMobile]
+  );
+
+  //const shadowMapSize = useMemo(() => (isMobile ? 512 : 1024), [isMobile]);
+
   return (
     <Canvas
       frameloop="demand"
       shadows
-      camera={{ position: [20, 3, 5], fov: 25 }}
+      camera={cameraProps}
       gl={{ preserveDrawingBuffer: true, alpha: true }}
     >
       {/* Canvas Loader show on fallback */}
